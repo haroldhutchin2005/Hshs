@@ -5,8 +5,8 @@ module.exports.config = {
     version: "1.0.0",
     hasPermssion: 0,
     credits: "Jonell Magallanes",
-    description: "Reupload music",
-    usePrefix: true,
+    description: "Reupload music from gdph serve",
+    usePrefix: false,
     commandCategory: "GDPH TOOLS",
     usages: "songlink | title | artist",
     cooldowns: 10
