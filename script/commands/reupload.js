@@ -7,8 +7,8 @@ module.exports.config = {
     credits: "Jonell Magallanes",
     description: "Reupload music",
     usePrefix: true,
-    commandCategory: "other",
-    usages: "song link | title | artist",
+    commandCategory: "GDPH TOOLS",
+    usages: "songlink | title | artist",
     cooldowns: 10
 };
 
@@ -19,16 +19,16 @@ module.exports.run = async function ({ api, event, args }) {
     const apiUrl = `https://gdph-reuploader-music-api-by-jonell.onrender.com/gdph?songlink=${link}&title=${title}&artist=${artist}`;
 
     if (!link || !title || !artist) {
-        return api.sendMessage("Please provide song link, title, and artist.\n\nUsage: ?rmusic song link | title | artist", event.threadID, event.messageID);
+        return api.sendMessage("Please provide song link, title, and artist.\n\nUsage: ?rmusic songlink | title | artist", event.threadID, event.messageID);
     }
 
     try {
-        api.sendMessage("🔄 | Reuploading song. Please wait...", event.threadID, event.messageID);
+        api.sendMessage("☁️ | Reuploading song. Please wait...", event.threadID, event.messageID);
 
         const response = await axios.get(apiUrl);
         const responseData = response.data.replace(/<\/?b>/g, '').replace(/<hr>/g, '');
 
-        api.sendMessage(`GDPH REUPLOADER SONG TOOLS\n\n${responseData}`, event.threadID, event.messageID);
+        api.sendMessage(`GDPH REUPLOADER SONG TOOLS RESPONSE\n\n${responseData}`, event.threadID, event.messageID);
     } catch (error) {
         console.error(error);
         api.sendMessage("An error occurred while processing your request.", event.threadID);
