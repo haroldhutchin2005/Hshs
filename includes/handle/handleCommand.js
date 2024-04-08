@@ -57,7 +57,7 @@ module.exports = function({ api, models, Users, Threads, Currencies }) {
         if (checker.bestMatch.rating >= 0.5) {
           command = commands.get(checker.bestMatch.target); 
         } else {
-          return api.sendMessage(`Hello user I'm ${global.config.BOTNAME} BOT How can you assist today?\nType ${global.config.PREFIX}help to view all commands\n\nDate:\n${time}`, threadID, messageID); 
+          return api.sendMessage(`Command not found! type ${global.config.PREFIX}help to see all commands\n\nDate:\n${time}`, threadID, messageID); 
         }
       }
     }
