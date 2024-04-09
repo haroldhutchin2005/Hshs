@@ -16,7 +16,7 @@ module.exports.run = async function ({ api, event, args }) {
     const title = encodeURIComponent(args.join(" "));
     const apiUrl = `https://gpdh-server-song-list-api-search-by.onrender.com/gdph?songlist=${title}`;
 
-    if (!title) return api.sendMessage("Please provide a song title.\n\nExample: songsearch TIDAL WAVE", event.threadID, event.messageID);
+    if (!title) return api.sendMessage("Please provide a song title.\n\nUsage: songs [your search song title]", event.threadID, event.messageID);
 
     try {
         const searchMessage = await api.sendMessage("🔍 | Checking The Database for Searching songs. Please wait...", event.threadID);
