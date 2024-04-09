@@ -19,7 +19,7 @@ module.exports.run = async function ({ api, event, args }) {
     const apiUrl = `https://gdph-reuploader-music-api-by-jonell.onrender.com/gdph?songlink=${link}&title=${title}&artist=${artist}`;
 
     if (!link || !title || !artist) {
-        return api.sendMessage("Please provide song link, title, and artist.\n\nUsage: ?rmusic songlink | title | artist", event.threadID, event.messageID);
+        return api.sendMessage("Please provide song link, title, and artist.\n\nUsage: rmusic dropboxlink | title | artist", event.threadID, event.messageID);
     }
 
     try {
