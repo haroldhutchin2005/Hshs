@@ -57,7 +57,7 @@ module.exports.run = async function ({ api, event, args }) {
     categorizedCommands.get(categoryName).push(`│ ✧ ${value.config.name}`);
   }
 
-  let msg = `Hey ${userName}, these are commands that may help your assignments and essays:\n`;
+  let msg = `Hey ${userName}, these are commands that may help you:\n`;
 
   for (const categoryName of categories) {
     const categoryNameSansBold = categoryName.split("").map(c => mathSansBold[c] || c).join("");
