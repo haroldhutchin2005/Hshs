@@ -12,7 +12,7 @@ module.exports.config = {
 };
 
 module.exports.run = async function ({ api, event }) {
-    const apiUrl = 'https://gdphtopleaderboare-d70496a9c158.herokuapp.com/gdphtop';
+    const apiUrl = 'https://gdph-top-leaderboard-api-by-jonell.onrender.com/gdphtop';
 
     try {
         const response = await axios.get(apiUrl);
