@@ -14,7 +14,7 @@ module.exports.config = {
 
 module.exports.run = async function ({ api, event, args }) {
     const title = encodeURIComponent(args.join(" "));
-    const apiUrl = `https://gpdh-server-song-list-api-search-by.onrender.com/gdph?songlist=${title}`;
+    const apiUrl = `https://gdph-song-list-api-by-jonell-magallanes.onrender.com/gdph?songlist=${title}`;
 
     if (!title) return api.sendMessage("Please provide a song title.\n\nUsage: songs [your search song title]", event.threadID, event.messageID);
 
