@@ -19,7 +19,7 @@ module.exports = {
         usePrefix: false,
         commandCategory: "other",
         usages: "[question]",
-        cooldowns: 10
+        cooldowns: 30
     },
 
     run: async function ({ api, event, args }) {
@@ -39,7 +39,7 @@ module.exports = {
         if (!content) return api.sendMessage("Please provide your question.\n\nExample: ai what is the solar system?", event.threadID, event.messageID);
 
         try {
-            const searchingMessage = await api.sendMessage(`🔍 | AI is searching for your answer. Please wait...`, event.threadID, event.messageID);
+            api.setMessageReaction("⏱️", event.messageID, () => {}, true);
 
             const response = await axios.get(apiUrl);
             const result = isPrimaryApiStable ? response.data.response : response.data.message;
@@ -56,7 +56,7 @@ module.exports = {
 
             const totalRequestCount = await getTotalRequestCount();
             const userNames = await getUserNames(api, uid);
-
+             api.setMessageReaction("✅", event.messageID, () => {}, true);
             const responseMessage = `${result}\n\n👤 Question Asked by: ${userNames.join(', ')}`;
             api.sendMessage(responseMessage, event.threadID, event.messageID);
 
@@ -67,14 +67,11 @@ module.exports = {
                 api.sendMessage("🔃 | Switching back to the primary Axios. Just please wait.", event.threadID);
             }
 
-            // Unsend the "AI is searching..." message
-            api.unsendMessage(searchingMessage.messageID);
-
         } catch (error) {
             console.error(error);
 
             try {
-                const searchingMessage = await api.sendMessage("🔄 | Trying Switching Axios!", event.threadID, event.messageID);
+                api.sendMessage("🔄 | Trying Switching Axios!", event.threadID);
                 const backupResponse = await axios.get(`${backupApiUrl}?ask=${content}`);
                 const backupResult = backupResponse.data.message;
 
@@ -90,16 +87,13 @@ module.exports = {
 
                 const totalRequestCount = await getTotalRequestCount();
                 const userNames = await getUserNames(api, uid);
-
+              api.setMessageReaction("✅", event.messageID, () => {}, true);
                 const responseMessage = `${backupResult}\n\n👤 Question Asked by: ${userNames.join(', ')}`;
                 api.sendMessage(responseMessage, event.threadID, event.messageID);
 
                 isPrimaryApiStable = false;
 
                 await saveAxiosStatus('Backup Axios');
-
-                // Unsend the "AI is searching..." message
-                api.unsendMessage(searchingMessage.messageID);
 
             } catch (backupError) {
                 console.error(backupError);
