@@ -7,7 +7,7 @@ module.exports.config = {
   usePrefix: true,
   commandCategory: "tiktok",
   usage: "[Tiktok <search>]",
-  cooldowns: 30,
+  cooldowns: 40,
 };
 
 const axios = require("axios");
